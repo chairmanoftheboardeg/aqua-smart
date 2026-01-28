@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Admin | AquaSmart</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<link rel="icon" type="image/png" href="https://i.ibb.co/wNLN6dtm/Logo-1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script defer src="/assets/js/layout.js"></script>
+
+
+</head>
+<body>
+<div id="loader" class="loader" aria-label="Loading">
+  <div class="loaderCard">
+    <div class="loaderTop">
+      <img class="loaderLogo" src="https://i.ibb.co/wNLN6dtm/Logo-1.png" alt="AquaSmart">
+      <div>
+        <div class="loaderTitle">AquaSmart</div>
+        <div class="small">Smart Solutions For A Better Home</div>
+      </div>
+    </div>
+    <div class="loaderBar" aria-hidden="true"><div class="loaderFill"></div></div>
+  </div>
+</div>
+
+<div id="site-header"></div>
+
+
+<main>
+  <section class="sectionTight">
+    <div class="container">
+      <div class="panel">
+        <div class="kicker">Admin</div>
+        <div class="h2" style="margin-top:8px">AquaSmart Admin Console</div>
+        <p class="p">Manage announcements, inquiries, jobs, and applications. Secure login required.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="adminApp"></div>
+</main>
+
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js"></script>
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/supabase-init.js"></script>
+
+<script defer src="/assets/js/admin.js"></script>
+
+</body>
+</html>

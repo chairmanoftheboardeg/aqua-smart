@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>About AquaSmart | AquaSmart</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<link rel="icon" type="image/png" href="https://i.ibb.co/wNLN6dtm/Logo-1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script defer src="/assets/js/layout.js"></script>
+
+
+</head>
+<body>
+<div id="loader" class="loader" aria-label="Loading">
+  <div class="loaderCard">
+    <div class="loaderTop">
+      <img class="loaderLogo" src="https://i.ibb.co/wNLN6dtm/Logo-1.png" alt="AquaSmart">
+      <div>
+        <div class="loaderTitle">AquaSmart</div>
+        <div class="small">Smart Solutions For A Better Home</div>
+      </div>
+    </div>
+    <div class="loaderBar" aria-hidden="true"><div class="loaderFill"></div></div>
+  </div>
+</div>
+
+<div id="site-header"></div>
+
+<main><section class='section'><div class='container'><div class='card' style='padding:26px; border-radius:22px'><div class='kicker'>Company</div><div class='h1' style='margin:10px 0 6px'>About AquaSmart</div><p class='p' style='max-width:860px'>AquaSmart is a Seychelles-based water solutions business delivering professional installations, testing, and project consultancy.</p><div class='hr'></div>
+<div class="grid2">
+  <div class="panel">
+    <div class="serviceTitle">Who we are</div>
+    <p class="p">AquaSmart provides water solutions designed to improve quality, comfort, and reliability for homes and projects across Seychelles.</p>
+    <p class="p">Our approach is simple: assess properly, install professionally, and support you after the job is done.</p>
+  </div>
+  <div class="panel">
+    <div class="serviceTitle">What we do best</div>
+    <ul class="p" style="margin:10px 0 0; padding-left:18px">
+      <li>Filtration system installation</li>
+      <li>Chlorine removal while keeping essential minerals</li>
+      <li>Private lab water testing and clear recommendations</li>
+      <li>Source detection, connection, and irrigation solutions</li>
+    </ul>
+  </div>
+</div>
+
+<div class="hr"></div>
+
+<div class="panel" id="team">
+  <div class="serviceTitle">Our team</div>
+  <p class="p">
+    Team members are shown here when published in the backend. Admins manage the team section.
+    If this section is empty, apply the team-public SQL patch in <code>ADMIN_SETUP.md</code>.
+  </p>
+  <div id="teamGrid" class="grid3" style="margin-top:12px">
+    <div class="serviceCard reveal">
+      <div class="serviceTitle">Team member</div>
+      <div class="serviceMeta">Add staff profiles in Supabase and publish to display here.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+  <div class="small">
+    Want to see the BlueWave Digital team?
+    <a class="bluewave" href="https://bluewave-digital.tylernicholasgroup.com/about.html#team" target="_blank" rel="noopener">View BlueWave Digital team</a>
+  </div>
+</div>
+</div></div></section></main>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js"></script>
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/supabase-init.js"></script>
+
+<script defer src="/assets/js/public.js"></script>
+
+<script>
+/* Team display: requires a public-readable team source.
+   See ADMIN_SETUP.md for the recommended SQL patch creating public.team_members.
+*/
+(function(){
+  const grid = document.getElementById('teamGrid');
+  if(!grid || !window.supabaseClient) return;
+
+  async function loadTeam(){
+    try{
+      // Prefer team_members if you apply the patch, fallback to staff_profiles (staff-only)
+      let res = await supabaseClient.from('team_members').select('*').eq('is_published', true).order('sort_order', {ascending:true});
+      if(res.error){
+        res = await supabaseClient.from('staff_profiles').select('full_name,whatsapp,bio,photo_url').eq('is_active', true);
+      }
+      if(res.error) throw res.error;
+      const data = res.data || [];
+      if(!data.length) return;
+
+      grid.innerHTML = data.map(m => `
+        <div class="serviceCard reveal">
+          <div style="display:flex; gap:12px; align-items:flex-start">
+            <div style="width:46px; height:46px; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06)">
+              <img alt="" src="${m.photo_url || 'https://i.ibb.co/wNLN6dtm/Logo-1.png'}" style="width:100%; height:100%; object-fit:cover">
+            </div>
+            <div>
+              <div class="serviceTitle">${(m.full_name||'').replaceAll('<','&lt;')}</div>
+              <div class="serviceMeta">${(m.bio||'').replaceAll('<','&lt;')}</div>
+              ${m.whatsapp ? `<div class="small" style="margin-top:8px"><a class="bluewave" href="https://wa.me/${m.whatsapp.replace(/\D/g,'')}">WhatsApp</a></div>` : ''}
+            </div>
+          </div>
+        </div>
+      `).join('');
+      document.querySelectorAll('#teamGrid .reveal').forEach(el=>el.classList.add('show'));
+    }catch(e){ console.warn('Team load failed', e); }
+  }
+  loadTeam();
+})();
+</script>
+
+</body>
+</html>

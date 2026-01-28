@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Home | AquaSmart</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<link rel="icon" type="image/png" href="https://i.ibb.co/wNLN6dtm/Logo-1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script defer src="/assets/js/layout.js"></script>
+
+
+</head>
+<body>
+<div id="loader" class="loader" aria-label="Loading">
+  <div class="loaderCard">
+    <div class="loaderTop">
+      <img class="loaderLogo" src="https://i.ibb.co/wNLN6dtm/Logo-1.png" alt="AquaSmart">
+      <div>
+        <div class="loaderTitle">AquaSmart</div>
+        <div class="small">Smart Solutions For A Better Home</div>
+      </div>
+    </div>
+    <div class="loaderBar" aria-hidden="true"><div class="loaderFill"></div></div>
+  </div>
+</div>
+
+<div id="site-header"></div>
+
+
+<div class="banner" id="announcement" hidden>
+  <div class="container bannerInner">
+    <div class="bannerText"><span class="bannerPulse"></span><span data-text></span></div>
+    <a class="btn btnTiny btnGhost" data-link href="/">Link</a>
+  </div>
+</div>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div class="card heroCard">
+        <div class="badge"><span>💧</span><span>Water solutions across Seychelles</span></div>
+        <h1 class="h1">Clean, confident water for your home and projects.</h1>
+        <p class="p" style="max-width:720px">
+          AquaSmart delivers filtration system installation, chlorine removal (while keeping essential minerals),
+          water testing, irrigation solutions, water source detection and professional consultancy.
+        </p>
+
+        <div class="heroCtas">
+          <a class="btn" href="/request-a-quote/">Request a Quote</a>
+          <a class="btn btnGhost" href="/solutions/">Find the right solution</a>
+          <a class="btn btnGhost" href="/contact/#whatsapp" id="whatsapp">WhatsApp us</a>
+        </div>
+
+        <div class="heroMini">
+          <div class="pill">Fast assessments</div>
+          <div class="pill">Professional setup</div>
+          <div class="pill">After-service support</div>
+          <div class="pill">Corporate-grade reporting</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sectionTight">
+    <div class="container grid2">
+      <div class="card" style="padding:22px; border-radius:22px">
+        <div class="kicker">Interactive</div>
+        <div class="h2" style="margin-top:8px">What problem are you solving?</div>
+        <p class="p">Pick the closest match and we’ll recommend the best next step.</p>
+
+        <div class="grid3" id="problemSelector" style="margin-top:12px">
+          <button class="serviceCard" type="button" data-problem="taste">
+            <div class="serviceTitle">Bad taste / odour</div>
+            <div class="serviceMeta">Improve drinking water quality</div>
+          </button>
+          <button class="serviceCard" type="button" data-problem="chlorine">
+            <div class="serviceTitle">Chlorine / skin irritation</div>
+            <div class="serviceMeta">Sensitive-skin friendly solution</div>
+          </button>
+          <button class="serviceCard" type="button" data-problem="unknown">
+            <div class="serviceTitle">Not sure what’s in the water</div>
+            <div class="serviceMeta">Private lab testing</div>
+          </button>
+          <button class="serviceCard" type="button" data-problem="pressure">
+            <div class="serviceTitle">Low flow / clogging</div>
+            <div class="serviceMeta">Automatic backwash setups</div>
+          </button>
+          <button class="serviceCard" type="button" data-problem="garden">
+            <div class="serviceTitle">Garden irrigation</div>
+            <div class="serviceMeta">Efficient, clean layouts</div>
+          </button>
+          <button class="serviceCard" type="button" data-problem="source">
+            <div class="serviceTitle">Source detection</div>
+            <div class="serviceMeta">Detection and connection</div>
+          </button>
+        </div>
+      </div>
+
+      <div class="card" style="padding:22px; border-radius:22px">
+        <div class="kicker">Recommendation</div>
+        <div class="h2" id="recTitle" style="margin-top:8px">Filtration system installation</div>
+        <p class="p" id="recText">Select a problem to see a recommended service.</p>
+        <div class="hr"></div>
+        <a class="btn" id="recLink" href="/services/">See details</a>
+
+        <div class="hr"></div>
+        <div class="small">
+          Managed by <a class="bluewave" href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" rel="noopener">BlueWave Digital</a>.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid2">
+        <div>
+          <div class="kicker">Services</div>
+          <div class="h2" style="margin-top:8px">Corporate-grade installations and support</div>
+          <p class="p">Built for homes, gardens, and water-related projects with clear documentation and professional execution.</p>
+        </div>
+        <div class="split" style="justify-content:flex-end; align-items:flex-end">
+          <a class="btn btnGhost" href="/services/">Explore services</a>
+          <a class="btn" href="/contact/">Talk to AquaSmart</a>
+        </div>
+      </div>
+
+      <div class="grid3" style="margin-top:16px">
+        <div class="serviceCard reveal" id="filtration">
+          <div class="serviceTitle">Drinking water filtration installation</div>
+          <div class="serviceMeta">Right-sized systems, clean setup, reliable results.</div>
+        </div>
+        <div class="serviceCard reveal" id="chlorine">
+          <div class="serviceTitle">Chlorine removal (keeps essential minerals)</div>
+          <div class="serviceMeta">Ideal for sensitive skin while maintaining beneficial minerals.</div>
+        </div>
+        <div class="serviceCard reveal" id="backwash">
+          <div class="serviceTitle">Automatic backwash systems</div>
+          <div class="serviceMeta">Less manual work, consistent performance and flow.</div>
+        </div>
+        <div class="serviceCard reveal" id="source">
+          <div class="serviceTitle">Water source detection and connection</div>
+          <div class="serviceMeta">Locate, assess, and connect sources professionally.</div>
+        </div>
+        <div class="serviceCard reveal" id="irrigation">
+          <div class="serviceTitle">Garden irrigation solutions</div>
+          <div class="serviceMeta">Efficient irrigation layouts tailored to your space.</div>
+        </div>
+        <div class="serviceCard reveal">
+          <div class="serviceTitle">Consultancy for water projects</div>
+          <div class="serviceMeta">Planning support for water-related projects and setups.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sectionTight">
+    <div class="container grid2">
+      <div class="card" style="padding:22px; border-radius:22px">
+        <div class="kicker">Careers</div>
+        <div class="h2" style="margin-top:8px">Open positions</div>
+        <p class="p">Jobs are managed in the Admin Console and appear here automatically.</p>
+        <div id="jobsList" style="margin-top:12px"></div>
+      </div>
+
+      <div class="card" style="padding:22px; border-radius:22px">
+        <div class="kicker">Get started</div>
+        <div class="h2" style="margin-top:8px">Request a quote</div>
+        <p class="p">Tell us what you need. We’ll respond by email with the next steps.</p>
+
+        <form class="form" data-inquiry data-type="quote" style="margin-top:12px">
+          <div class="formRow">
+            <div class="field"><label>Full name</label><input name="full_name" required></div>
+            <div class="field"><label>Email</label><input name="email" type="email" required></div>
+          </div>
+          <div class="formRow">
+            <div class="field"><label>Phone (optional)</label><input name="phone" placeholder="+248"></div>
+            <div class="field">
+              <label>Island</label>
+              <select name="island">
+                <option value="">Select…</option>
+                <option>Mahé</option>
+                <option>Praslin</option>
+                <option>La Digue</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Service</label>
+            <select name="service">
+              <option value="">Select…</option>
+              <option>Drinking water filtration installation</option>
+              <option>Consultancy for water-related projects</option>
+              <option>Water source detection and connection</option>
+              <option>Garden irrigation solutions</option>
+              <option>Chlorine removal (keeps essential minerals)</option>
+              <option>Automatic backwash systems</option>
+              <option>Private laboratory water testing</option>
+              <option>Full equipment for professional setup</option>
+              <option>After-care and maintenance services</option>
+            </select>
+          </div>
+          <div class="field"><label>Message</label><textarea name="message" required placeholder="Describe your water issue and location."></textarea></div>
+          <button class="btn" type="submit" data-submit>Submit</button>
+          <div class="small">IT services managed by <a class="bluewave" href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" rel="noopener">BlueWave Digital</a>.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js"></script>
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/supabase-init.js"></script>
+
+<script defer src="/assets/js/public.js"></script>
+
+</body>
+</html>
