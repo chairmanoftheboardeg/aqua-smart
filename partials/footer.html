@@ -1,43 +1,40 @@
 <footer class="footer">
   <div class="container">
-    <div class="grid">
-      <div class="card pad">
+    <div class="inner">
+      <div>
         <div class="badge">AquaSmart</div>
-        <h3 style="margin-top:10px;">Smart Solutions For A Better Home</h3>
-        <p>Water filtration, chlorine removal, testing, irrigation, source detection and consultancy across Seychelles.</p>
-        <div class="pills" style="margin-top:10px;">
-          <a class="pill" href="/request-a-quote/">Request a Quote</a>
-          <a class="pill" href="/contact/">Contact</a>
-          <a class="pill" href="/admin/">Staff Login</a>
+        <h4 style="margin:12px 0 8px 0;">Smart Solutions For A Better Home</h4>
+        <div class="muted" style="max-width:520px;line-height:1.6;">
+          Drinking water filtration installation, water testing, chlorine removal systems, garden irrigation, source detection and consultancy across Seychelles.
+        </div>
+        <div class="fine">
+          © <span id="year"></span> Aqua Smart. Website and IT Services managed by
+          <a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" rel="noopener" style="display:inline;color:inherit;text-decoration:underline;">BlueWave Digital</a>.
         </div>
       </div>
 
-      <div class="card pad">
-        <h3>Explore</h3>
-        <div style="display:grid;gap:8px;">
-          <a href="/services/">Services</a>
-          <a href="/solutions/">Solutions</a>
-          <a href="/water-testing/">Water Testing</a>
-          <a href="/projects/">Projects</a>
-          <a href="/careers/">Careers</a>
-        </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="/services/">Services</a>
+        <a href="/solutions/">Solutions</a>
+        <a href="/water-testing/">Water Testing</a>
+        <a href="/projects/">Projects</a>
+        <a href="/careers/">Careers</a>
+        <a href="/contact/">Contact</a>
       </div>
 
-      <div class="card pad">
-        <h3>Company</h3>
-        <div style="display:grid;gap:8px;">
-          <a href="/about/">About</a>
-          <a href="/certifications-compliance/">Certifications &amp; Compliance</a>
-          <a href="/privacy-policy/">Privacy Policy</a>
-          <a href="/terms/">Terms of Service</a>
-          <a href="/cookies/">Cookies Policy</a>
-        </div>
+      <div>
+        <h4>Company</h4>
+        <a href="/about/">About</a>
+        <a href="/testimonials/">Testimonials</a>
+        <a href="/certifications-compliance/">Certifications & Compliance</a>
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms/">Terms of Service</a>
+        <a href="/admin/" class="muted">Staff Login</a>
       </div>
-    </div>
-
-    <div class="mini">
-      <div>© <span id="year"></span> Aqua Smart. Website and IT Services managed by <a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" rel="noopener">BlueWave Digital</a>.</div>
-      <div class="muted">WhatsApp redirects to Linktree.</div>
     </div>
   </div>
 </footer>
+<script>
+  (function(){ var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); })();
+</script>

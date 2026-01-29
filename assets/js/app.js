@@ -42,7 +42,7 @@
     }catch(_){}
     if(!enabled){ banner.classList.add("hidden"); return; }
 
-    const t = $("#bannerText"); if(t) t.textContent = text;
+    const t = $("#bannerText"); if(t) t.textContent = (text && text.length) ? text : " ";
     const l = $("#bannerLink");
     if(l){
       if(linkText && linkUrl){ l.textContent=linkText; l.href=linkUrl; l.style.display="inline-flex"; }
@@ -74,4 +74,29 @@
       if(error) throw error;
     }
   };
+
+  // Dropdown menus (desktop)
+  function setupDropdowns(){
+    const dds = Array.from(document.querySelectorAll(".dd"));
+    if(!dds.length) return;
+    const closeAll = ()=> dds.forEach(d=>d.classList.remove("open"));
+    dds.forEach(d=>{
+      const btn = d.querySelector(".dd-toggle");
+      if(!btn) return;
+      btn.addEventListener("click",(e)=>{
+        e.preventDefault();
+        const isOpen = d.classList.contains("open");
+        closeAll();
+        if(!isOpen) d.classList.add("open");
+      });
+    });
+    document.addEventListener("click",(e)=>{
+      if(!e.target.closest(".dd")) closeAll();
+    });
+    document.addEventListener("keydown",(e)=>{
+      if(e.key==="Escape") closeAll();
+    });
+  }
+  setupDropdowns();
+
 })();
