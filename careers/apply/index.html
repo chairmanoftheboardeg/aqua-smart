@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Apply | AquaSmart</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07121a">
+<link rel="icon" href="https://i.ibb.co/wNLN6dtm/Logo-1.png">
+<link rel="preconnect" href="https://hhqriuezzjlrhmwifxva.supabase.co">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/config.js"></script>
+<script defer src="/assets/js/app.js"></script>
+
+</head>
+<body>
+<div id="siteHeader"></div>
+<main><section class="section"><div class="container"><div class="badge">Careers</div><h1 style="margin-top:12px;">Apply</h1>
+<p class="muted">Paste your CV link. Ensure anyone with the link can view.</p>
+<div class="card pad" style="margin-top:16px;">
+<form id="applyForm">
+<input type="hidden" name="job_id" id="jobId">
+<div class="form-row"><div><label>Full name</label><input required name="full_name" placeholder="Your name"></div><div><label>Email</label><input required type="email" name="email" placeholder="you@example.com"></div></div>
+<div class="form-row" style="margin-top:12px;"><div><label>Phone (optional)</label><input name="phone" placeholder="+248 ..."></div><div><label>CV / Resume link</label><input required name="cv_link" placeholder="https://drive.google.com/..."></div></div>
+<div style="margin-top:12px;"><label>Note (optional)</label><textarea name="note" placeholder="A short note…"></textarea></div>
+<div style="display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap;"><button class="btn primary" type="submit">Submit application</button><div id="applyMsg" class="muted"></div></div>
+</form></div></div></section>
+<script>
+document.addEventListener("DOMContentLoaded",()=> {
+  const params=new URLSearchParams(location.search);
+  const jobId=params.get("job_id")||"";
+  document.getElementById("jobId").value = jobId;
+  const form=document.getElementById("applyForm");
+  const msg=document.getElementById("applyMsg");
+  form?.addEventListener("submit", async (e)=>{
+    e.preventDefault(); msg.textContent="Submitting…";
+    try{
+      const payload=Object.fromEntries(new FormData(form).entries());
+      if(!payload.job_id){ msg.textContent="Missing job id. Please go back to Careers and try again."; return; }
+      payload.status="new";
+      await window.AquaSmartAPI.submitApplication(payload);
+      msg.textContent="Submitted. Thank you."; form.reset(); document.getElementById("jobId").value=jobId;
+    }catch(_){ msg.textContent="Failed to submit. Please try again."; }
+  });
+});
+</script></main>
+<div id="siteFooter"></div>
+</body>
+</html>

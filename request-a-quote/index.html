@@ -2,99 +2,55 @@
 <html lang="en">
 <head>
 <title>Request a Quote | AquaSmart</title>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b1220">
-<link rel="icon" type="image/png" href="https://i.ibb.co/wNLN6dtm/Logo-1.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css">
-<script defer src="/assets/js/layout.js"></script>
-
+<meta name="theme-color" content="#07121a">
+<link rel="icon" href="https://i.ibb.co/wNLN6dtm/Logo-1.png">
+<link rel="preconnect" href="https://hhqriuezzjlrhmwifxva.supabase.co">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/config.js"></script>
+<script defer src="/assets/js/app.js"></script>
 
 </head>
 <body>
-<div id="loader" class="loader" aria-label="Loading">
-  <div class="loaderCard">
-    <div class="loaderTop">
-      <img class="loaderLogo" src="https://i.ibb.co/wNLN6dtm/Logo-1.png" alt="AquaSmart">
-      <div>
-        <div class="loaderTitle">AquaSmart</div>
-        <div class="small">Smart Solutions For A Better Home</div>
-      </div>
-    </div>
-    <div class="loaderBar" aria-hidden="true"><div class="loaderFill"></div></div>
-  </div>
-</div>
-
-<div id="site-header"></div>
-
-
-<main>
-  <section class="section">
-    <div class="container">
-      <div class="card" style="padding:26px; border-radius:22px">
-        <div class="kicker">AquaSmart</div>
-        <div class="h1" style="margin:10px 0 6px">Request a Quote</div>
-        <p class="p" style="max-width:860px">Submit a quote request and the AquaSmart team will respond by email.</p>
-        <div class="hr"></div>
-        
-<form class="form" data-inquiry data-type="quote" style="margin-top:12px">
-  <div class="formRow">
-    <div class="field"><label>Full name</label><input name="full_name" required></div>
-    <div class="field"><label>Email</label><input name="email" type="email" required></div>
-  </div>
-  <div class="formRow">
-    <div class="field"><label>Phone (optional)</label><input name="phone" placeholder="+248"></div>
-    <div class="field">
-      <label>Island</label>
-      <select name="island">
-        <option value="">Select…</option>
-        <option>Mahé</option>
-        <option>Praslin</option>
-        <option>La Digue</option>
-        <option>Other</option>
-      </select>
-    </div>
-  </div>
-  <div class="field">
-    <label>Service</label>
-    <select name="service">
-      <option value="">Select…</option>
-      <option>Drinking water filtration installation</option>
-      <option>Consultancy for water-related projects</option>
-      <option>Water source detection and connection</option>
-      <option>Garden irrigation solutions</option>
-      <option>Chlorine removal (keeps essential minerals)</option>
-      <option>Automatic backwash systems</option>
-      <option>Private laboratory water testing</option>
-      <option>Full equipment for professional setup</option>
-      <option>After-care and maintenance services</option>
-    </select>
-  </div>
-  <div class="field"><label>Message</label><textarea name="message" required placeholder="Include your location and any details about the issue."></textarea></div>
-  <button class="btn" type="submit" data-submit>Submit request</button>
-  <div class="small">We respond by email. For urgent requests use WhatsApp from the Contact page.</div>
-</form>
-
-        <div class="small" style="margin-top:18px">
-          Website and IT Services managed by <a class="bluewave" href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" rel="noopener">BlueWave Digital</a>.
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-
-<div id="site-footer"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js"></script>
-<script src="/assets/js/config.js"></script>
-<script src="/assets/js/supabase-init.js"></script>
-
-<script defer src="/assets/js/public.js"></script>
-
+<div id="siteHeader"></div>
+<main><section class="section"><div class="container"><div class="badge">Request a Quote</div><h1 style="margin-top:12px;">Tell us what you need</h1>
+<p>Provide details and we will follow up. This goes to the Admin dashboard.</p>
+<div class="card pad" style="margin-top:16px;">
+<form id="quoteForm">
+<div class="form-row"><div><label>Full name</label><input required name="full_name" placeholder="Your name"></div><div><label>Email</label><input required type="email" name="email" placeholder="you@example.com"></div></div>
+<div class="form-row" style="margin-top:12px;"><div><label>Phone</label><input name="phone" placeholder="+248 ..."></div><div><label>Island</label><select name="island"><option>Mahé</option><option>Praslin</option><option>La Digue</option><option>Other</option></select></div></div>
+<div style="margin-top:12px;"><label>Service</label><select required name="service">
+<option value="">Select</option>
+<option>Drinking water filtration system installation</option>
+<option>Consultancy for all water-related projects</option>
+<option>Water source detection and connection</option>
+<option>Garden irrigation solutions</option>
+<option>Chlorine removal systems</option>
+<option>Automatic backwash systems</option>
+<option>Private laboratory water testing</option>
+<option>Full equipment for professional setup</option>
+<option>After-care and maintenance services</option>
+</select></div>
+<div style="margin-top:12px;"><label>Message</label><textarea required name="message" placeholder="Describe your situation and what you want."></textarea></div>
+<div style="display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap;"><button class="btn primary" type="submit">Submit</button><div id="quoteMsg" class="muted"></div></div>
+</form></div></div></section>
+<script>
+document.addEventListener("DOMContentLoaded",()=> {
+  const form=document.getElementById("quoteForm");
+  const msg=document.getElementById("quoteMsg");
+  form?.addEventListener("submit", async (e)=>{
+    e.preventDefault(); msg.textContent="Submitting…";
+    try{
+      const payload=Object.fromEntries(new FormData(form).entries());
+      payload.type="quote"; payload.status="new";
+      await window.AquaSmartAPI.submitInquiry(payload);
+      msg.textContent="Submitted. Thank you."; form.reset();
+    }catch(_){ msg.textContent="Failed to submit. Please try again."; }
+  });
+});
+</script></main>
+<div id="siteFooter"></div>
 </body>
 </html>

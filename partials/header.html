@@ -1,82 +1,48 @@
-<header class="siteHeader" id="top">
-  <div class="container headerInner">
-    <a class="brand" href="/" aria-label="AquaSmart Home">
-      <img class="brandLogo" src="https://i.ibb.co/wNLN6dtm/Logo-1.png" alt="AquaSmart logo">
-      <span class="brandText">
-        <span class="brandName">AquaSmart</span>
-        <span class="brandTag">Smart Solutions For A Better Home</span>
-      </span>
-    </a>
+<div class="top-banner" id="topBanner">
+  <div class="container"><div class="wrap">
+    <div class="text" id="bannerText"></div>
+    <div class="right"><a class="btn ghost" id="bannerLink" href="#" style="padding:7px 10px;border-radius:999px;font-size:12px;display:none;">Learn more</a></div>
+  </div></div>
+</div>
 
-    <nav class="nav" aria-label="Primary">
-      <a class="navLink" href="/">Home</a>
+<div class="nav">
+  <div class="container"><div class="inner">
+    <a class="brand" href="/"><img id="navLogo" alt="AquaSmart logo"><span><b id="navBrand">AquaSmart</b><em id="navSlogan">Smart Solutions For A Better Home</em></span></a>
 
-      <div class="navGroup">
-        <button class="navLink navBtn" type="button" data-dropdown="company">
-          Company <span class="chev">▾</span>
-        </button>
-        <div class="dropdown" data-menu="company" role="menu">
-          <a role="menuitem" href="/about/">About AquaSmart</a>
-          <a role="menuitem" href="/certifications-and-compliance/">Certifications &amp; Compliance</a>
-          <a role="menuitem" href="/testimonials/">Testimonials</a>
-          <a role="menuitem" href="/coverage-areas/">Coverage Areas</a>
-          <a role="menuitem" href="/careers/">Careers</a>
-        </div>
-      </div>
-
-      <div class="navGroup">
-        <button class="navLink navBtn" type="button" data-dropdown="solutions">
-          Solutions <span class="chev">▾</span>
-        </button>
-        <div class="dropdown" data-menu="solutions" role="menu">
-          <a role="menuitem" href="/services/">Services</a>
-          <a role="menuitem" href="/solutions/">Solutions Finder</a>
-          <a role="menuitem" href="/water-testing/">Water Testing</a>
-          <a role="menuitem" href="/service-plans/">Service Plans</a>
-          <a role="menuitem" href="/support-centre/">Support Centre</a>
-          <a role="menuitem" href="/faqs/">FAQs</a>
-        </div>
-      </div>
-
-      <div class="navGroup">
-        <button class="navLink navBtn" type="button" data-dropdown="insights">
-          Insights <span class="chev">▾</span>
-        </button>
-        <div class="dropdown" data-menu="insights" role="menu">
-          <a role="menuitem" href="/projects/">Projects</a>
-          <a role="menuitem" href="/case-studies/">Case Studies</a>
-          <a role="menuitem" href="/industries-served/">Industries Served</a>
-          <a role="menuitem" href="/blog/">Blog / Insights</a>
-        </div>
-      </div>
-
-      <a class="navLink" href="/contact/">Contact</a>
-
-      <a class="btn btnGhost navCta" href="/request-a-quote/">Request a Quote</a>
-      <a class="btn navCta" href="/contact/#whatsapp">WhatsApp</a>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="/services/">Services</a>
+      <a href="/solutions/">Solutions</a>
+      <a href="/water-testing/">Water Testing</a>
+      <a href="/projects/">Projects</a>
+      <a href="/careers/">Careers</a>
+      <a href="/contact/">Contact</a>
     </nav>
 
-    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-
-  <div class="mobileMenu" id="mobileMenu" hidden>
-    <div class="container mobileInner">
-      <a class="mobileLink" href="/">Home</a>
-      <a class="mobileLink" href="/about/">About AquaSmart</a>
-      <a class="mobileLink" href="/services/">Services</a>
-      <a class="mobileLink" href="/solutions/">Solutions Finder</a>
-      <a class="mobileLink" href="/water-testing/">Water Testing</a>
-      <a class="mobileLink" href="/projects/">Projects</a>
-      <a class="mobileLink" href="/careers/">Careers</a>
-      <a class="mobileLink" href="/contact/">Contact</a>
-      <div class="mobileCtas">
-        <a class="btn btnGhost" href="/request-a-quote/">Request a Quote</a>
-        <a class="btn" href="/contact/#whatsapp">WhatsApp</a>
-      </div>
+    <div class="nav-cta">
+      <a class="btn ghost" id="whatsappBtn" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn primary" href="/request-a-quote/">Request a Quote</a>
+      <button class="btn burger" id="burgerBtn" aria-label="Open menu">Menu</button>
     </div>
-  </div>
+  </div></div>
+</div>
 
-  <div class="progressBar" aria-hidden="true"><div class="progressBarFill"></div></div>
-</header>
+<div class="mobile-drawer" id="drawer">
+  <div class="drawer-panel">
+    <div class="top"><div class="badge">Menu</div><button class="btn ghost" id="drawerClose">Close</button></div>
+    <a href="/services/">Services</a>
+    <a href="/solutions/">Solutions</a>
+    <a href="/water-testing/">Water Testing</a>
+    <a href="/projects/">Projects</a>
+    <a href="/case-studies/">Case Studies</a>
+    <a href="/industries-served/">Industries Served</a>
+    <a href="/service-plans/">Service Plans</a>
+    <a href="/support-centre/">Support Centre</a>
+    <a href="/faqs/">FAQs</a>
+    <a href="/blog/">Blog / Insights</a>
+    <a href="/certifications-compliance/">Certifications &amp; Compliance</a>
+    <a href="/testimonials/">Testimonials</a>
+    <a href="/coverage-areas/">Coverage Areas</a>
+    <hr class="sep">
+    <a href="/admin/" style="opacity:.9">Staff Login</a>
+  </div>
+</div>

@@ -2,77 +2,42 @@
 <html lang="en">
 <head>
 <title>Water Testing | AquaSmart</title>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b1220">
-<link rel="icon" type="image/png" href="https://i.ibb.co/wNLN6dtm/Logo-1.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css">
-<script defer src="/assets/js/layout.js"></script>
-
+<meta name="theme-color" content="#07121a">
+<link rel="icon" href="https://i.ibb.co/wNLN6dtm/Logo-1.png">
+<link rel="preconnect" href="https://hhqriuezzjlrhmwifxva.supabase.co">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/config.js"></script>
+<script defer src="/assets/js/app.js"></script>
 
 </head>
 <body>
-<div id="loader" class="loader" aria-label="Loading">
-  <div class="loaderCard">
-    <div class="loaderTop">
-      <img class="loaderLogo" src="https://i.ibb.co/wNLN6dtm/Logo-1.png" alt="AquaSmart">
-      <div>
-        <div class="loaderTitle">AquaSmart</div>
-        <div class="small">Smart Solutions For A Better Home</div>
-      </div>
-    </div>
-    <div class="loaderBar" aria-hidden="true"><div class="loaderFill"></div></div>
-  </div>
-</div>
-
-<div id="site-header"></div>
-
-
-<main>
-  <section class="section">
-    <div class="container">
-      <div class="card" style="padding:26px; border-radius:22px">
-        <div class="kicker">AquaSmart</div>
-        <div class="h1" style="margin:10px 0 6px">Water Testing</div>
-        <p class="p" style="max-width:860px">Private laboratory water testing arranged by AquaSmart.</p>
-        <div class="hr"></div>
-        
-<div class="grid2">
-  <div class="panel">
-    <div class="serviceTitle">Why test?</div>
-    <p class="p">Testing confirms what’s in your water before you invest in equipment. It also helps validate treatment effectiveness.</p>
-  </div>
-  <div class="panel">
-    <div class="serviceTitle">What you get</div>
-    <p class="p">A clear report and a recommendation for next steps: filtration, chlorine removal, or other targeted solutions.</p>
-  </div>
-</div>
-<div class="hr"></div>
-<div class="split">
-  <a class="btn" href="/request-a-quote/">Request testing</a>
-  <a class="btn btnGhost" href="/contact/">Ask a question</a>
-</div>
-
-        <div class="small" style="margin-top:18px">
-          Website and IT Services managed by <a class="bluewave" href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" rel="noopener">BlueWave Digital</a>.
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-
-<div id="site-footer"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js"></script>
-<script src="/assets/js/config.js"></script>
-<script src="/assets/js/supabase-init.js"></script>
-
-<script defer src="/assets/js/public.js"></script>
-
+<div id="siteHeader"></div>
+<main><section class="section"><div class="container"><div class="badge">Private laboratory testing</div><h1 style="margin-top:12px;">Water Testing</h1><p class="muted">Placeholders are included for images to keep the site visually engaging without heavy effects.</p><hr class="sep"><div class="grid two"><div class="card pad"><h3>Why test your water?</h3><p>Confirm safety and performance. Make decisions based on real results.</p><div style="height:140px;border:1px dashed rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.02);display:flex;align-items:center;justify-content:center;"><span class="muted">Image placeholder</span></div></div>
+<div class="card pad"><h3>What happens next?</h3><p>We coordinate the testing process and advise you on the best solution.</p><div style="height:140px;border:1px dashed rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.02);display:flex;align-items:center;justify-content:center;"><span class="muted">Image placeholder</span></div></div></div></div></section><section class="section sm"><div class="container"><div class="card pad"><h2>Request a test</h2>
+<form id="testForm">
+<div class="form-row"><div><label>Full name</label><input required name="full_name" placeholder="Your name"></div><div><label>Email</label><input required type="email" name="email" placeholder="you@example.com"></div></div>
+<div class="form-row" style="margin-top:12px;"><div><label>Phone</label><input name="phone" placeholder="+248 ..."></div><div><label>Island</label><select name="island"><option>Mahé</option><option>Praslin</option><option>La Digue</option><option>Other</option></select></div></div>
+<div style="margin-top:12px;"><label>Notes (optional)</label><textarea name="message" placeholder="Any details about your water source or concern?"></textarea></div>
+<div style="display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap;"><button class="btn primary" type="submit">Submit</button><div id="testMsg" class="muted"></div></div>
+</form></div></div></section>
+<script>
+document.addEventListener("DOMContentLoaded",()=> {
+  const form=document.getElementById("testForm");
+  const msg=document.getElementById("testMsg");
+  form?.addEventListener("submit", async (e)=>{
+    e.preventDefault(); msg.textContent="Sending…";
+    try{
+      const payload=Object.fromEntries(new FormData(form).entries());
+      payload.type="support"; payload.service="Water Testing"; payload.status="new";
+      await window.AquaSmartAPI.submitInquiry(payload);
+      msg.textContent="Submitted. Thank you."; form.reset();
+    }catch(_){ msg.textContent="Failed to submit. Please try again."; }
+  });
+});
+</script></main>
+<div id="siteFooter"></div>
 </body>
 </html>

@@ -1,59 +1,104 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Admin | AquaSmart</title>
-
+<title>Admin Console | AquaSmart</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b1220">
-<link rel="icon" type="image/png" href="https://i.ibb.co/wNLN6dtm/Logo-1.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css">
-<script defer src="/assets/js/layout.js"></script>
-
+<meta name="theme-color" content="#07121a">
+<link rel="icon" href="https://i.ibb.co/wNLN6dtm/Logo-1.png">
+<link rel="preconnect" href="https://hhqriuezzjlrhmwifxva.supabase.co">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/config.js"></script>
+<script defer src="/assets/js/app.js"></script>
 
 </head>
 <body>
-<div id="loader" class="loader" aria-label="Loading">
-  <div class="loaderCard">
-    <div class="loaderTop">
-      <img class="loaderLogo" src="https://i.ibb.co/wNLN6dtm/Logo-1.png" alt="AquaSmart">
-      <div>
-        <div class="loaderTitle">AquaSmart</div>
-        <div class="small">Smart Solutions For A Better Home</div>
+<div id="siteHeader"></div>
+<main><section class="section"><div class="container">
+<div class="badge">Staff Portal</div><h1 style="margin-top:12px;">Admin Console</h1>
+<p class="muted">Access: /admin/ (also linked in footer). Sign in with staff email + password.</p>
+<div id="status" class="notice" style="margin-top:12px;"></div>
+
+<form id="loginForm" class="card pad" style="margin-top:16px;max-width:560px;">
+  <div class="form-row" style="grid-template-columns:1fr;">
+    <div><label>Email</label><input id="email" type="email" required placeholder="staff@company.com"></div>
+    <div><label>Password</label><input id="password" type="password" required placeholder="••••••••"></div>
+  </div>
+  <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
+    <button class="btn primary" type="submit">Sign in</button>
+    <a class="btn ghost" href="/">Back to Home</a>
+  </div>
+  <p class="muted" style="margin-top:10px;">If you can sign in but see errors, ensure your staff profile row is linked to your Auth UID in <code>staff_profiles</code>.</p>
+</form>
+
+<button id="logoutBtn" class="btn ghost hide" style="margin-top:12px;">Sign out</button>
+
+<div id="adminPanel" class="hide" style="margin-top:16px;">
+  <div class="grid two">
+    <div class="card pad">
+      <h2>Announcement Banner</h2>
+      <p class="muted">The top bar stays visible even if text is empty.</p>
+      <div style="margin-top:10px;"><label><input id="bannerEnabledInput" type="checkbox"> Enabled</label></div>
+      <div style="margin-top:10px;"><label>Text</label><input id="bannerTextInput" placeholder="(optional)"></div>
+      <div class="form-row" style="margin-top:10px;">
+        <div><label>Link text (optional)</label><input id="bannerLinkTextInput" placeholder="Request a Quote"></div>
+        <div><label>Link URL (optional)</label><input id="bannerLinkUrlInput" placeholder="/request-a-quote/"></div>
       </div>
+      <div style="margin-top:12px;"><button class="btn primary" id="bannerSaveBtn" type="button">Save</button></div>
     </div>
-    <div class="loaderBar" aria-hidden="true"><div class="loaderFill"></div></div>
+
+    <div class="card pad">
+      <h2>Create Job</h2>
+      <div class="form-row">
+        <div><label>Title</label><input id="jobTitle" placeholder="Role title"></div>
+        <div><label>Location</label><input id="jobLocation" placeholder="Seychelles"></div>
+      </div>
+      <div class="form-row" style="margin-top:10px;">
+        <div><label>Employment type</label><input id="jobType" placeholder="Full-time / Part-time / Contract / Volunteer"></div>
+        <div style="display:flex;align-items:flex-end;">
+          <label style="display:flex;gap:10px;align-items:center;margin:0;"><input id="jobActive" type="checkbox" checked> Publish immediately</label>
+        </div>
+      </div>
+      <div style="margin-top:10px;"><label>Description</label><textarea id="jobDesc" placeholder="Role summary and responsibilities"></textarea></div>
+      <div style="margin-top:10px;"><label>Requirements (optional)</label><textarea id="jobReq" placeholder="Requirements"></textarea></div>
+      <div style="margin-top:10px;"><label>How to apply (optional)</label><textarea id="jobApply" placeholder="Any additional instructions"></textarea></div>
+      <div style="margin-top:12px;"><button class="btn primary" id="jobCreateBtn" type="button">Create job</button></div>
+    </div>
+  </div>
+
+  <div class="card pad" style="margin-top:16px;">
+    <h2>Inquiries</h2>
+    <div style="overflow:auto;">
+      <table class="table">
+        <thead><tr><th>Created</th><th>Type</th><th>Name</th><th>Contact</th><th>Service</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="inquiriesBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card pad" style="margin-top:16px;">
+    <h2>Jobs</h2>
+    <div style="overflow:auto;">
+      <table class="table">
+        <thead><tr><th>Created</th><th>Title</th><th>Location</th><th>Type</th><th>State</th><th>Actions</th></tr></thead>
+        <tbody id="jobsBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card pad" style="margin-top:16px;">
+    <h2>Applications</h2>
+    <div style="overflow:auto;">
+      <table class="table">
+        <thead><tr><th>Created</th><th>Job</th><th>Name</th><th>Contact</th><th>CV</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="appsBody"></tbody>
+      </table>
+    </div>
   </div>
 </div>
-
-<div id="site-header"></div>
-
-
-<main>
-  <section class="sectionTight">
-    <div class="container">
-      <div class="panel">
-        <div class="kicker">Admin</div>
-        <div class="h2" style="margin-top:8px">AquaSmart Admin Console</div>
-        <p class="p">Manage announcements, inquiries, jobs, and applications. Secure login required.</p>
-      </div>
-    </div>
-  </section>
-
-  <div id="adminApp"></div>
-</main>
-
-
-<div id="site-footer"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js"></script>
-<script src="/assets/js/config.js"></script>
-<script src="/assets/js/supabase-init.js"></script>
-
-<script defer src="/assets/js/admin.js"></script>
-
+</div></section>
+<script defer src="/assets/js/admin.js"></script></main>
+<div id="siteFooter"></div>
 </body>
 </html>

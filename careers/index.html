@@ -2,133 +2,46 @@
 <html lang="en">
 <head>
 <title>Careers | AquaSmart</title>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b1220">
-<link rel="icon" type="image/png" href="https://i.ibb.co/wNLN6dtm/Logo-1.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css">
-<script defer src="/assets/js/layout.js"></script>
-
+<meta name="theme-color" content="#07121a">
+<link rel="icon" href="https://i.ibb.co/wNLN6dtm/Logo-1.png">
+<link rel="preconnect" href="https://hhqriuezzjlrhmwifxva.supabase.co">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/config.js"></script>
+<script defer src="/assets/js/app.js"></script>
 
 </head>
 <body>
-<div id="loader" class="loader" aria-label="Loading">
-  <div class="loaderCard">
-    <div class="loaderTop">
-      <img class="loaderLogo" src="https://i.ibb.co/wNLN6dtm/Logo-1.png" alt="AquaSmart">
-      <div>
-        <div class="loaderTitle">AquaSmart</div>
-        <div class="small">Smart Solutions For A Better Home</div>
-      </div>
-    </div>
-    <div class="loaderBar" aria-hidden="true"><div class="loaderFill"></div></div>
-  </div>
-</div>
-
-<div id="site-header"></div>
-
-
-<main>
-  <section class="section">
-    <div class="container">
-      <div class="card" style="padding:26px; border-radius:22px">
-        <div class="kicker">AquaSmart</div>
-        <div class="h1" style="margin:10px 0 6px">Careers</div>
-        <p class="p" style="max-width:860px">Explore open positions and apply online.</p>
-        <div class="hr"></div>
-        
-<div id="jobs">
-  <div class="panel">
-    <div class="serviceTitle">Open positions</div>
-    <p class="p">Positions are managed via the Admin Console. Active roles appear below automatically.</p>
-    <div id="jobsList" style="margin-top:12px"></div>
-  </div>
-</div>
-
-<div class="hr"></div>
-
-<div id="apply" class="panel">
-  <div class="serviceTitle">Easy Apply</div>
-  <p class="p">No uploads. Paste a shareable link to your CV/Resume (Google Drive / Dropbox / OneDrive).</p>
-
-  <div class="panel" style="border-radius:16px">
-    <div class="serviceTitle">How to get a CV link (quick)</div>
-    <ol class="p" style="padding-left:18px; margin:10px 0 0">
-      <li><b>Google Drive:</b> Right click your CV → Share → “Anyone with the link” → Copy link.</li>
-      <li><b>Dropbox:</b> Share → Create link → Copy.</li>
-      <li><b>OneDrive:</b> Share → Anyone with link can view → Copy link.</li>
-    </ol>
-  </div>
-
-  <div id="jobHint" class="small" style="margin-top:10px"></div>
-
-  <form class="form" data-job-apply style="margin-top:12px">
-    <div class="field">
-      <label>Position</label>
-      <select name="job_id" required>
-        <option value="">Select a job from the list above…</option>
-      </select>
-    </div>
-
-    <div class="formRow">
-      <div class="field"><label>Full name</label><input name="full_name" required></div>
-      <div class="field"><label>Email</label><input name="email" type="email" required></div>
-    </div>
-
-    <div class="field"><label>Phone (optional)</label><input name="phone" placeholder="+248"></div>
-
-    <div class="field">
-      <label>CV / Resume link</label>
-      <input name="cv_link" required placeholder="https://drive.google.com/...">
-    </div>
-
-    <div class="field">
-      <label>Note (optional)</label>
-      <textarea name="note" placeholder="Anything you want us to know"></textarea>
-    </div>
-
-    <button class="btn" type="submit" data-submit>Submit application</button>
-  </form>
-</div>
-
+<div id="siteHeader"></div>
+<main><section class="section"><div class="container"><div class="badge">Careers</div><h1 style="margin-top:12px;">Open positions</h1>
+<p>Apply with a CV/Resume link (no uploads). Your application appears in the Admin dashboard.</p>
+<div class="card pad" style="margin-top:16px;"><h2>How to get a CV link</h2>
+<p class="muted">Upload your CV to Google Drive or Dropbox, set it to “Anyone with the link can view”, then paste the share link.</p>
+<div class="pills"><span class="pill">Google Drive: Share → General access → Anyone with the link</span><span class="pill">Dropbox: Share → Create link</span></div></div>
+<div class="card pad" style="margin-top:16px;"><h2>Jobs</h2><div id="jobsList" class="grid two" style="margin-top:12px;"></div><div id="jobsMsg" class="muted" style="margin-top:10px;"></div></div>
+</div></section>
 <script>
-/* Populate job dropdown from jobs list */
-(function(){
-  const sel = document.querySelector("select[name='job_id']");
-  if(!sel || !window.supabaseClient) return;
-  supabaseClient.from('jobs').select('id,title').eq('is_active', true).order('created_at', {ascending:false})
-    .then(({data, error})=>{
-      if(error || !data) return;
-      data.forEach(j=>{
-        const opt = document.createElement('option');
-        opt.value = j.id;
-        opt.textContent = j.title;
-        sel.appendChild(opt);
-      });
-    });
-})();
-</script>
-
-        <div class="small" style="margin-top:18px">
-          Website and IT Services managed by <a class="bluewave" href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" rel="noopener">BlueWave Digital</a>.
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-
-<div id="site-footer"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js"></script>
-<script src="/assets/js/config.js"></script>
-<script src="/assets/js/supabase-init.js"></script>
-
-<script defer src="/assets/js/public.js"></script>
-
+document.addEventListener("DOMContentLoaded", async ()=> {
+  const wrap=document.getElementById("jobsList");
+  const msg=document.getElementById("jobsMsg");
+  msg.textContent="Loading…";
+  try{
+    const jobs=await window.AquaSmartAPI.fetchActiveJobs();
+    if(!jobs.length){ msg.textContent="No open positions at the moment."; return; }
+    msg.textContent="";
+    wrap.innerHTML = jobs.map(j=>`
+      <div class="card pad">
+        <h3>${eh(j.title||"")}</h3>
+        <p class="muted">${eh(j.location||"")} • ${eh(j.employment_type||"")}</p>
+        <p>${eh((j.description||"").slice(0,180))}${(j.description||"").length>180 ? "…" : ""}</p>
+        <a class="btn full" href="/careers/apply/?job_id=${j.id}">Apply</a>
+      </div>`).join("");
+  }catch(_){ msg.textContent="Failed to load jobs. Please try again."; }
+  function eh(s){ return String(s||"").replace(/[&<>"]/g,c=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));}
+});
+</script></main>
+<div id="siteFooter"></div>
 </body>
 </html>

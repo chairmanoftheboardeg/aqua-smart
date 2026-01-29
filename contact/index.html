@@ -2,100 +2,50 @@
 <html lang="en">
 <head>
 <title>Contact | AquaSmart</title>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b1220">
-<link rel="icon" type="image/png" href="https://i.ibb.co/wNLN6dtm/Logo-1.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css">
-<script defer src="/assets/js/layout.js"></script>
-
+<meta name="theme-color" content="#07121a">
+<link rel="icon" href="https://i.ibb.co/wNLN6dtm/Logo-1.png">
+<link rel="preconnect" href="https://hhqriuezzjlrhmwifxva.supabase.co">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/config.js"></script>
+<script defer src="/assets/js/app.js"></script>
 
 </head>
 <body>
-<div id="loader" class="loader" aria-label="Loading">
-  <div class="loaderCard">
-    <div class="loaderTop">
-      <img class="loaderLogo" src="https://i.ibb.co/wNLN6dtm/Logo-1.png" alt="AquaSmart">
-      <div>
-        <div class="loaderTitle">AquaSmart</div>
-        <div class="small">Smart Solutions For A Better Home</div>
-      </div>
-    </div>
-    <div class="loaderBar" aria-hidden="true"><div class="loaderFill"></div></div>
-  </div>
+<div id="siteHeader"></div>
+<main><section class="section"><div class="container"><div class="badge">Contact</div><h1 style="margin-top:12px;">Contact AquaSmart</h1>
+<p>Send an enquiry. Submissions appear in the Admin dashboard.</p>
+<div class="grid two" style="margin-top:16px;">
+<div class="card pad"><h3>Quick details</h3>
+<p><b>WhatsApp / Linktree:</b> <a href="https://linktr.ee/aquasmart.sc" target="_blank" rel="noopener">linktr.ee/aquasmart.sc</a></p>
+<p><b>Service area:</b> Seychelles</p>
+<div style="height:180px;border:1px dashed rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.02);display:flex;align-items:center;justify-content:center;margin-top:12px;"><span class="muted">Map placeholder</span></div>
 </div>
-
-<div id="site-header"></div>
-
-
-<main>
-  <section class="section">
-    <div class="container">
-      <div class="card" style="padding:26px; border-radius:22px">
-        <div class="kicker">AquaSmart</div>
-        <div class="h1" style="margin:10px 0 6px">Contact</div>
-        <p class="p" style="max-width:860px">Get in touch with AquaSmart. We respond by email.</p>
-        <div class="hr"></div>
-        
-<div class="grid2">
-  <div class="panel">
-    <div class="serviceTitle">Contact</div>
-    <p class="p">Use the form to contact AquaSmart. For urgent requests, use WhatsApp.</p>
-
-    <form class="form" data-inquiry data-type="general" style="margin-top:12px">
-      <div class="formRow">
-        <div class="field"><label>Full name</label><input name="full_name" required></div>
-        <div class="field"><label>Email</label><input name="email" type="email" required></div>
-      </div>
-      <div class="formRow">
-        <div class="field"><label>Phone (optional)</label><input name="phone" placeholder="+248"></div>
-        <div class="field">
-          <label>Island</label>
-          <select name="island">
-            <option value="">Select…</option>
-            <option>Mahé</option>
-            <option>Praslin</option>
-            <option>La Digue</option>
-            <option>Other</option>
-          </select>
-        </div>
-      </div>
-      <div class="field"><label>Message</label><textarea name="message" required placeholder="How can we help?"></textarea></div>
-      <button class="btn" type="submit" data-submit>Send message</button>
-    </form>
-  </div>
-
-  <div class="panel" id="whatsapp">
-    <div class="serviceTitle">WhatsApp</div>
-    <p class="p">Add your business WhatsApp number here once confirmed.</p>
-    <div class="small">Tip: Use a click-to-chat link like <code>https://wa.me/248XXXXXXXX</code></div>
-    <div class="hr"></div>
-    <div class="serviceTitle">Managed IT</div>
-    <p class="p">This website and IT services are managed by BlueWave Digital.</p>
-    <a class="btn btnGhost" href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" rel="noopener">Visit BlueWave Digital</a>
-  </div>
-</div>
-
-        <div class="small" style="margin-top:18px">
-          Website and IT Services managed by <a class="bluewave" href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" rel="noopener">BlueWave Digital</a>.
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-
-<div id="site-footer"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js"></script>
-<script src="/assets/js/config.js"></script>
-<script src="/assets/js/supabase-init.js"></script>
-
-<script defer src="/assets/js/public.js"></script>
-
+<div class="card pad"><h3>Contact form</h3>
+<form id="contactForm">
+<div class="form-row"><div><label>Full name</label><input required name="full_name" placeholder="Your name"></div><div><label>Email</label><input required type="email" name="email" placeholder="you@example.com"></div></div>
+<div class="form-row" style="margin-top:12px;"><div><label>Phone (optional)</label><input name="phone" placeholder="+248 ..."></div><div><label>Island</label><select name="island"><option>Mahé</option><option>Praslin</option><option>La Digue</option><option>Other</option></select></div></div>
+<div style="margin-top:12px;"><label>Service (optional)</label><select name="service"><option value="">Select</option><option>Filtration Installation</option><option>Chlorine Removal</option><option>Water Testing</option><option>Irrigation</option><option>Water Source Detection</option><option>Consultancy</option><option>Automatic Backwash</option><option>Other</option></select></div>
+<div style="margin-top:12px;"><label>Message</label><textarea required name="message" placeholder="Tell us what you need…"></textarea></div>
+<div style="display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap;"><button class="btn primary" type="submit">Send</button><div id="contactMsg" class="muted"></div></div>
+</form></div></div></div></section>
+<script>
+document.addEventListener("DOMContentLoaded",()=> {
+  const form=document.getElementById("contactForm");
+  const msg=document.getElementById("contactMsg");
+  form?.addEventListener("submit", async (e)=>{
+    e.preventDefault(); msg.textContent="Sending…";
+    try{
+      const payload=Object.fromEntries(new FormData(form).entries());
+      payload.type="general"; payload.status="new";
+      await window.AquaSmartAPI.submitInquiry(payload);
+      msg.textContent="Sent. Thank you."; form.reset();
+    }catch(_){ msg.textContent="Failed to send. Please try again."; }
+  });
+});
+</script></main>
+<div id="siteFooter"></div>
 </body>
 </html>
