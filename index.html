@@ -100,6 +100,7 @@
             height: 60px;
             width: auto;
             transition: transform 0.3s ease;
+            display: block;
         }
 
         .logo:hover img {
@@ -214,7 +215,6 @@
             height: 100%;
         }
 
-        /* We use two waves to create a parallax liquid effect */
         .wave-back {
             animation: waveAnim 15s linear infinite;
             fill: rgba(17, 164, 217, 0.2);
@@ -357,31 +357,6 @@
             font-size: 1.1rem;
         }
 
-        /* --- FLOATING WHATSAPP BUTTON --- */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 25px rgba(37, 211, 102, 0.4);
-        }
-
         /* --- FOOTER & BLUEWAVE BADGE --- */
         .site-footer {
             background-color: var(--text-dark);
@@ -399,9 +374,13 @@
         }
 
         .footer-logo {
-            height: 50px;
+            height: 60px;
             margin-bottom: 1.5rem;
-            filter: brightness(0) invert(1); /* Makes logo white if needed, or leave normal */
+            /* Filter removed to ensure native logo colors load perfectly */
+            background-color: var(--bg-white); /* Added a white background pill so it pops on the dark footer */
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .footer-content p {
@@ -431,6 +410,7 @@
         .social-links a:hover {
             background: var(--aqua-cyan);
             transform: translateY(-3px);
+            color: var(--bg-white);
         }
 
         .agency-badge {
@@ -513,10 +493,6 @@
         <a href="/contact/" class="btn-primary" style="display: none;">Get a Quote</a>
     </nav>
 
-    <a href="https://wa.me/2480000000" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
     <header class="hero">
         <div class="hero-content">
             <div class="hero-badge"><i class="fa-solid fa-droplet"></i> Seychelles Based</div>
@@ -587,19 +563,23 @@
 
     <footer class="site-footer">
         <div class="footer-content">
-            <img src="https://aqua-smart.tylernicholasgroup.com/assets/images/logo.png" alt="Aqua Smart" class="footer-logo">
+            <img src="https://aqua-smart.tylernicholasgroup.com/assets/images/logo.png" alt="Aqua Smart Logo" class="footer-logo">
+            
             <p>Smart solutions for a better home. Proudly operating across Seychelles to provide premium water filtration, irrigation, and testing consultancy.</p>
             
             <div class="social-links">
-                <a href="https://linktr.ee/aquasmart.sc" target="_blank" title="Linktree"><i class="fa-solid fa-link"></i></a>
-                <a href="https://wa.me/2480000000" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://linktr.ee/aquasmart.sc" target="_blank" title="Aqua Smart Linktree">
+                    <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                        <path d="M13.736 5.853l4.005-4.117 2.325 2.38-4.2 4.005h5.908v3.305h-5.937l4.229 4.108-2.325 2.334-5.74-5.539v7.203h-3.329v-7.204l-5.74 5.54-2.325-2.335 4.229-4.108H.429V7.822h5.936l-4.2-4.005 2.325-2.38 4.005 4.117V.052h3.242v5.801z"/>
+                    </svg>
+                </a>
             </div>
 
             <div>&copy; 2026 Aqua Smart. All Rights Reserved.</div>
 
             <div class="agency-badge">
                 <span>Digital Infrastructure Provided By</span>
-                <a href="https://blue-wave.tylernicholasgroup.com" target="_blank" class="agency-link">
+                <a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" class="agency-link">
                     <i class="fa-solid fa-microchip"></i> BlueWave Digital
                 </a>
             </div>
