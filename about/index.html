@@ -1,33 +1,522 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<title>About AquaSmart | AquaSmart</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#1176ae">
-<link rel="icon" href="/assets/images/favicon.png">
-<link rel="preconnect" href="https://hhqriuezzjlrhmwifxva.supabase.co">
-<link rel="stylesheet" href="/assets/css/styles.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/assets/js/config.js"></script>
-<script defer src="/assets/js/app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Aqua Smart</title>
+    
+    <link rel="icon" href="https://aqua-smart.tylernicholasgroup.com/assets/images/logo.png" type="image/png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <style>
+        /* --- AQUA SMART BRAND VARIABLES --- */
+        :root {
+            --ocean-blue: #005691;
+            --aqua-cyan: #11a4d9;
+            --smart-green: #39b54a;
+            --water-light: #eaf6f9;
+            --bg-white: #ffffff;
+            --text-dark: #1a2a3a;
+            --text-muted: #5a6a7a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            color: var(--ocean-blue);
+        }
+
+        /* --- WATER RIPPLE LOADER --- */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+        }
+
+        .ripple {
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+
+        .ripple div {
+            position: absolute;
+            border: 4px solid var(--aqua-cyan);
+            opacity: 1;
+            border-radius: 50%;
+            animation: ripple-anim 1.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+        }
+
+        .ripple div:nth-child(2) {
+            animation-delay: -0.5s;
+        }
+
+        @keyframes ripple-anim {
+            0% { top: 36px; left: 36px; width: 0; height: 0; opacity: 0; }
+            4.9% { top: 36px; left: 36px; width: 0; height: 0; opacity: 0; }
+            5% { top: 36px; left: 36px; width: 0; height: 0; opacity: 1; }
+            100% { top: 0px; left: 0px; width: 72px; height: 72px; opacity: 0; }
+        }
+
+        /* --- NAVIGATION BAR --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 86, 145, 0.05);
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--ocean-blue);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--aqua-cyan);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--ocean-blue), var(--aqua-cyan));
+            color: var(--bg-white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            box-shadow: 0 5px 15px rgba(17, 164, 217, 0.3);
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(17, 164, 217, 0.4);
+        }
+
+        /* --- PAGE HERO --- */
+        .page-hero {
+            position: relative;
+            background: linear-gradient(135deg, var(--water-light) 0%, var(--bg-white) 100%);
+            padding: 12rem 5% 6rem;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        /* --- SCROLL REVEAL --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- ABOUT CONTENT SECTION --- */
+        .about-section {
+            padding: 6rem 5% 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--ocean-blue);
+        }
+
+        .about-section p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        /* --- CORE VALUES GRID --- */
+        .values-section {
+            padding: 2rem 5% 8rem;
+            background-color: var(--bg-white);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            background: var(--water-light);
+            border-radius: 16px;
+            padding: 3.5rem 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 86, 145, 0.1);
+            background: var(--bg-white);
+            border: 1px solid rgba(17, 164, 217, 0.1);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            color: var(--smart-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--ocean-blue);
+        }
+
+        .value-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* --- CSS WATER WAVES (BOTTOM OF CONTENT) --- */
+        .wave-separator {
+            width: 100%;
+            height: 100px;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg); /* Flip it so it transitions into the dark footer */
+            background: var(--text-dark);
+        }
+
+        .wave-separator svg {
+            display: block;
+            width: 100%;
+            height: 100px;
+        }
+
+        .wave-separator path {
+            fill: var(--bg-white);
+        }
+
+        /* --- FOOTER & BLUEWAVE BADGE --- */
+        .site-footer {
+            background-color: var(--text-dark);
+            color: var(--bg-white);
+            padding: 2rem 5% 2rem; /* Reduced top padding due to wave separator */
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 1.5rem;
+            background-color: var(--bg-white);
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .footer-content p {
+            color: #a0aec0;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .social-links a {
+            color: var(--bg-white);
+            background: rgba(255,255,255,0.1);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--aqua-cyan);
+            transform: translateY(-3px);
+            color: var(--bg-white);
+        }
+
+        .agency-badge {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: #718096;
+        }
+
+        .agency-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            color: var(--bg-white);
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+        }
+
+        .agency-link img {
+            height: 16px;
+        }
+
+        .agency-link:hover {
+            border-color: #00d2ff;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+            color: #00d2ff;
+        }
+
+        /* --- KEYFRAMES --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- MOBILE MENU --- */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--ocean-blue);
+        }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+            .page-hero h1 { font-size: 2.8rem; }
+            .values-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-<div id="siteHeader"></div>
-<main><section class="section"><div class="container"><div class="badge">Company overview</div><h1 style="margin-top:12px;">About AquaSmart</h1><p class="muted">Placeholders are included for images to keep the site visually engaging without heavy effects.</p>
-<div class="ph">Team & Work Photos Placeholder</div>
-<hr class="sep"><div class="grid two"><div class="card pad"><h3>Who we are</h3><p>AquaSmart is a Seychelles-based water solutions business focused on quality, reliability and clear advice.</p><div style="height:140px;border:1px dashed rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.02);display:flex;align-items:center;justify-content:center;"><span class="muted">Image placeholder</span></div></div>
-<div class="card pad"><h3>Managed IT Services</h3><p>This website and IT services are managed by BlueWave Digital for a corporate-grade experience.</p><div style="height:140px;border:1px dashed rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.02);display:flex;align-items:center;justify-content:center;"><span class="muted">Image placeholder</span></div></div></div></div></section><section class="section sm"><div class="container"><div class="card pad">
-<h2>Team</h2><p class="muted">Team cards (photo, full name, Our Socials, bio). Replace placeholders with real profiles.</p>
-<div class="grid three" style="margin-top:14px;">
-<div class="card pad"><div style="height:140px;border-radius:14px;border:1px dashed rgba(255,255,255,.18);background:rgba(255,255,255,.02);display:flex;align-items:center;justify-content:center;"><span class="muted">Photo</span></div><h3 style="margin-top:10px;">Full Name</h3><p class="muted">Our Socials: +248 …</p><p>Short bio goes here.</p></div>
-<div class="card pad"><div style="height:140px;border-radius:14px;border:1px dashed rgba(255,255,255,.18);background:rgba(255,255,255,.02);display:flex;align-items:center;justify-content:center;"><span class="muted">Photo</span></div><h3 style="margin-top:10px;">Full Name</h3><p class="muted">Our Socials: +248 …</p><p>Short bio goes here.</p></div>
-<div class="card pad"><div style="height:140px;border-radius:14px;border:1px dashed rgba(255,255,255,.18);background:rgba(255,255,255,.02);display:flex;align-items:center;justify-content:center;"><span class="muted">Photo</span></div><h3 style="margin-top:10px;">Full Name</h3><p class="muted">Our Socials: +248 …</p><p>Short bio goes here.</p></div>
-</div>
-<hr class="sep"><p class="muted">Also see the BlueWave Digital team:</p>
-<a class="btn" href="https://bluewave-digital.tylernicholasgroup.com/about.html#team" target="_blank" rel="noopener">View BlueWave Digital Team</a>
-</div></div></section></main>
-<div id="siteFooter"></div>
+
+    <div id="loader">
+        <div class="ripple">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <img src="https://aqua-smart.tylernicholasgroup.com/assets/images/logo.png" alt="Aqua Smart Logo">
+        </a>
+        
+        <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+        
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/services/">Services</a></li>
+            <li><a href="/about/" class="active">About Us</a></li>
+            <li><a href="/contact/">Contact</a></li>
+        </ul>
+        <a href="/contact/" class="btn-primary" style="display: none;">Get a Quote</a>
+    </nav>
+
+    <header class="page-hero">
+        <h1>Who We Are.</h1>
+        <p>A dedicated Seychelles-based business focused on pure water and smart solutions for a better home.</p>
+    </header>
+
+    <section class="about-section reveal">
+        <h2>Committed to Pure Water & Smart Solutions</h2>
+        <p>At Aqua Smart, we understand that water is the essential foundation of any property. From the drinking water your family relies on every day, to the irrigation systems keeping your gardens thriving, it needs to be safe, clean, and properly managed.</p>
+        <p>Operating entirely within Seychelles, we noticed a need for a reliable, professional approach to home water systems. We bridge the gap by offering expert consultancy, professional equipment provisioning, and dedicated after-care maintenance. Whether we are detecting a new water source or installing a chlorine removal system to protect sensitive skin, our focus remains on delivering peace of mind.</p>
+    </section>
+
+    <section class="values-section">
+        <div class="values-grid">
+            
+            <div class="value-card reveal">
+                <i class="fa-solid fa-shield-check value-icon" style="color: var(--aqua-cyan);"></i>
+                <h3>Quality</h3>
+                <p>We source and supply only the highest-grade filtration systems and full equipment setups for professional, long-lasting installations.</p>
+            </div>
+
+            <div class="value-card reveal">
+                <i class="fa-solid fa-clock-rotate-left value-icon"></i>
+                <h3>Reliability</h3>
+                <p>With automatic backwash systems and dedicated after-care maintenance, we ensure consistent performance that you can depend on year-round.</p>
+            </div>
+
+            <div class="value-card reveal">
+                <i class="fa-solid fa-comments value-icon" style="color: var(--ocean-blue);"></i>
+                <h3>Clear Advice</h3>
+                <p>No complex jargon. We provide straightforward consultancy, honest water source detection, and accurate private laboratory testing.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="wave-separator">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,128C672,107,768,117,864,138.7C960,160,1056,192,1152,197.3C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <img src="https://aqua-smart.tylernicholasgroup.com/assets/images/logo.png" alt="Aqua Smart Logo" class="footer-logo">
+            
+            <p>Smart solutions for a better home. Proudly operating across Seychelles to provide premium water filtration, irrigation, and testing consultancy.</p>
+            
+            <div class="social-links">
+                <a href="https://linktr.ee/aquasmart.sc" target="_blank" title="Aqua Smart Linktree">
+                    <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                        <path d="M13.736 5.853l4.005-4.117 2.325 2.38-4.2 4.005h5.908v3.305h-5.937l4.229 4.108-2.325 2.334-5.74-5.539v7.203h-3.329v-7.204l-5.74 5.54-2.325-2.335 4.229-4.108H.429V7.822h5.936l-4.2-4.005 2.325-2.38 4.005 4.117V.052h3.242v5.801z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div>&copy; 2026 Aqua Smart. All Rights Reserved.</div>
+
+            <div class="agency-badge">
+                <span>Digital Infrastructure Provided By</span>
+                <a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" class="agency-link">
+                    <i class="fa-solid fa-microchip"></i> BlueWave Digital
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Loader Logic
+        window.addEventListener("load", function() {
+            const loader = document.getElementById("loader");
+            setTimeout(() => {
+                loader.style.opacity = "0";
+                loader.style.visibility = "hidden";
+            }, 800);
+        });
+
+        // 2. Scroll Animation Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        // 3. Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                navLinks.style.padding = '2rem 0';
+                navLinks.style.boxShadow = '0 10px 15px rgba(0,0,0,0.05)';
+            }
+        });
+    </script>
 </body>
 </html>
